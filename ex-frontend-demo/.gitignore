@@ -1,0 +1,61 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+.env
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+.run/
+
+# recat front-app
+front-app/logs
+front-app/*.log
+front-app/npm-debug.log*
+front-app/yarn-debug.log*
+front-app/yarn-error.log*
+front-app/pnpm-debug.log*
+front-app/lerna-debug.log*
+
+front-app/node
+front-app/node_modules
+front-app/dist
+front-app/dist-ssr
+front-app/*.local
+
+front-app/.vscode/*
+front-app/!.vscode/extensions.json
+front-app/.idea
+front-app/.DS_Store
+front-app/*.suo
+front-app/*.ntvs*
+front-app/*.njsproj
+front-app/*.sln
+front-app/*.sw?

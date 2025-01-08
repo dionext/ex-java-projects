@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  web: 
+    build: #for case if image does not exists 
+      context: app
+      dockerfile: Dockerfile
+    #image: folder_web:latest
+    #container_name: folder_web #- do not use 
+    restart: unless-stopped
+    ports:
+      - ${ENV_PORTS}:${ENV_PORT}
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      SPRING_PROFILES_ACTIVE: ${ENV_ACTIVE_PROFILE}
+      SERVER_PORT: ${ENV_PORT}
+      DATABASE_ADDRESS: ${ENV_DATABASE_ADDRESS}
+      MYSQL_PASSWORD: ${ENV_MYSQL_PASSWORD}
+      MYSQL_USER: ${ENV_MYSQL_USER}
+      ADMIN_USER: ${ENV_ADMIN_USER}
+      ADMIN_PASSWORD: ${ENV_ADMIN_PASSWORD}
+      TZ: Europe/Moscow
+    networks:
+      #- app_network
+      app_network:
+        aliases:
+          - ${ENV_APP_NAME}
+    labels:
+      logging.promtail: "true"
+      logging_jobname: ${ENV_APP_NAME}
+      co.elastic.logs/enabled: true
+      #co.elastic.logs/module: nginx
+      #co.elastic.logs/fileset.stdout: access
+      #co.elastic.logs/fileset.stderr: error
+      co.elastic.logs/json.keys_under_root: true
+      co.elastic.logs/json.add_error_key: true
+      co.elastic.logs/json.message_key: log
+
+networks:
+  app_network:
+    name: mainnetwork
+    external: true

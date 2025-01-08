@@ -1,0 +1,52 @@
+#server:
+#  port: 8081
+spring:
+  # application name
+  application:
+    name: ex-kafka-client
+  # kafka settings
+  kafka:
+    bootstrap-servers: ${APP_KAFKA_BOOTSTRAP_SERVERS:192.168.1.149:29092,192.168.1.149:29093,192.168.1.149:29094}
+    consumer:
+      topic:
+        mykafka: ${APP_KAFKA_TOPIC_MYKAFKA:mykafka}
+      group: ${KAFKA_CONSUMER_GROUP:my-kafka-group}
+      auto-offset-reset: ${KAFKA_CONSUMER_AUTO_OFFSET_RESET:earliest}
+      poll-timeout: ${KAFKA_CONSUMER_POLL_TIMEOUT:100}
+      auto-commit: ${KAFKA_CONSUMER_AUTO_COMMIT:true}
+      serialization:
+        key: ${KAFKA_CONSUMER_SER_KEY:org.apache.kafka.common.serialization.StringDeserializer}
+        value: ${KAFKA_CONSUMER_SER_VALUE:org.apache.kafka.common.serialization.JsonDeserializer}
+# monitoring and tracing settings
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0 #for all
+  #otlp:
+   # tracing:
+    #  endpoint: http://192.168.1.149/:4317/v1/traces
+
+  #for monitoring
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+  zipkin:
+    tracing:
+      endpoint: http://192.168.1.149:9411/api/v2/spans
+
+# custom monitoring and tracing settings
+tracing:
+  url: http://192.168.1.149:44317
+
+logging:
+  config: classpath:${LOGBACK:logback.xml}
+  #config: classpath:${LOGBACK:logback-loki.xml}
+  #config: classpath:${LOGBACK:logback-local.xml}
+  level:
+    root: info
+    com:
+      dionext: debug

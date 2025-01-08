@@ -1,0 +1,29 @@
+# Application info
+info:
+  name: '@project.name@'
+  description: '@project.description@'
+  version: '@project.version@'
+  time: '@maven.build.timestamp@'
+  app:
+    encoding: '@project.build.sourceEncoding@'
+    java:
+      source: '@java.version@'
+      target: '@java.version@'
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: "10s"
+  datasource:
+    url: jdbc:mariadb://192.168.1.149/idea?useSSL=false&allowMultiQueries=true&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    username:
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        implicit-strategy:  org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+      #generate_statistics: true  # summary time
+      #format_sql: true  # multiline format

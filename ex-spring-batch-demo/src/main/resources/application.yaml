@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ex-spring-batch-demo
+file:
+  input: coffee-list.csv

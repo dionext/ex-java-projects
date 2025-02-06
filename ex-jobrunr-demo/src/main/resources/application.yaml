@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ex-jobrunr-demo
+
+# job
+org:
+  jobrunr:
+    background-job-server:
+      enabled: true
+    dashboard:
+      enabled: true
+      port: 8000 #the port on which to start the dashboard
+    miscellaneous:
+      allow-anonymous-data-usage: false #true sends the amount of succeeded jobs for marketing purposes
+

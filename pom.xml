@@ -23,6 +23,8 @@
         <module>ex-frontend-demo</module>
         <module>ex-ms-demo</module>
         <module>ex-ms-project</module>
+        <module>ex-jobrunr-demo</module>
+        <module>ex-spring-batch-demo</module>
     </modules>
 
     <properties>
